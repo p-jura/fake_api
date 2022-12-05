@@ -1,0 +1,10 @@
+{
+    "mainPage": {
+        "title": "Reqres API Demo App",
+        "emptyPage": "Theres no data available, please click download"
+    },
+    "personPage": {
+        "title": "Persons Page",
+        "emptyPage": "Theres no data available, please click download"
+    }
+}
