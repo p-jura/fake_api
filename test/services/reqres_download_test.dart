@@ -5,9 +5,9 @@ void main() {
   late ReqresDownloadFromeApi sut1;
   late ReqresDownloadFromeApi sut2;
 
-  setUp(() {
-    sut1 = ReqresDownloadFromeApi();
-    sut2 = ReqresDownloadFromeApi();
+  setUp(() async {
+    sut1 = await ReqresDownloadFromeApi.instance;
+    sut2 = await ReqresDownloadFromeApi.instance;
   });
 
   test('Testing Singleton class equality', () {

@@ -1,10 +1,10 @@
-import 'package:fake_api/services/titles.dart';
+import 'package:fake_api/services/fromeJson/load_frome_json.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
-  runApp(ChangeNotifierProvider(
-    create: (_) => TitlesFromJson(),
+  runApp(ChangeNotifierProvider<LoadFromJson>(
+    create: (_) => LoadFromJson(),
     child: const FakeApi(),
   ));
 }
@@ -19,24 +19,26 @@ class FakeApi extends StatefulWidget {
 class _FakeApiState extends State<FakeApi> {
   static const _TITLE = 'title';
   static const _EMPTYPAGE = 'emptyPage';
+  static const _EMPTYTITLE = 'title did not loaded';
+
   @override
   void initState() {
-    TitlesFromJson().loadTitles();
+    LoadFromJson.instance;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TitlesFromJson>(builder: (context, value, _) {
-      var text = value.appTitles;
+    return Consumer<LoadFromJson>(builder: (context, value, _) {
+      Map<String, dynamic>? text = value.appTitles;
 
       return MaterialApp(
-        title: text?[_TITLE] != null ? (text![_TITLE]) : 'title did not loaded',
+        title: text?[_TITLE] != null ? (text![_TITLE]) : _EMPTYTITLE,
         home: Scaffold(
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              text?[_TITLE] != null ? (text![_TITLE]) : 'title did not loaded',
+              text?[_TITLE] != null ? (text![_TITLE]) : _EMPTYTITLE,
             ),
           ),
           body: ListView.builder(
@@ -45,7 +47,7 @@ class _FakeApiState extends State<FakeApi> {
                 dense: true,
                 leading: Text(text?[_EMPTYPAGE] != null
                     ? (text![_EMPTYPAGE])
-                    : 'title did not loaded'),
+                    : _EMPTYTITLE),
               );
             }),
           ),

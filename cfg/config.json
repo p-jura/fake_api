@@ -1,4 +1,6 @@
 {
-    
-
+    "reqresApi": {
+        "apiUrl": "https://reqres.in/api/",
+        "usersList":"users?page=2"
+    }
 }
